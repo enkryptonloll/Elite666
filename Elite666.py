@@ -1,4 +1,3 @@
-from turtle import title
 import discord
 from discord.ext import commands
 import os
@@ -164,4 +163,3 @@ async def on_message(message):
 
 # Run the bot with your Discord token
 bot.run('MTI0ODk1NjA2MDEyNzk4OTc5MQ.GzIGG8.QUPsdzAUj07ihPrmW_VrWSM5lKnEci5jUQ3poA')  # Replace with your Discord bot token
-
